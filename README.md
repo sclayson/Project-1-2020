@@ -2,60 +2,11 @@
 
 The files in this repository were used to configure the network depicted below.
 
-![https://drive.google.com/file/d/12yGNSj0798di4bFDW-bNox9HYIdkuLpw/view]
+[https://drive.google.com/file/d/12yGNSj0798di4bFDW-bNox9HYIdkuLpw/view]
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the yml file may be used to install only certain pieces of it, such as Filebeat.
 
----
-- name: Configure Elk VM with Docker
-  hosts: elk
-  remote_user: elk
-  become: true
-  tasks:
-    # Use apt module
-    - name: Install docker.io
-      apt:
-        update_cache: yes
-        name: docker.io
-        state: present
-
-      # Use apt module
-    - name: Install pip3
-      apt:
-        force_apt_get: yes
-        name: python3-pip
-        state: present
-
-      # Use pip module
-    - name: Install Docker python module
-      pip:
-        name: docker
-        state: present
-
-      # Use command module
-    - name: Increase virtual memory
-      command: sysctl -w vm.max_map_count=262144
-
-      # Use sysctl module
-    - name: Use more memory
-      sysctl:
-        name: vm.max_map_count
-        value: "262144"
-        state: present
-        reload: yes
-
-      # Use docker_container module
-    - name: download and launch a docker elk container
-      docker_container:
-        name: elk
-        image: sebp/elk:761
-        state: started
-        restart_policy: always
-        published_ports:
-          - 5601:5601
-          - 9200:9200
-          - 5044:5044
-
+![elk.txt](elk.txt)
 
 This document contains the following details:
 - Description of the Topologu
@@ -85,7 +36,7 @@ _Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdow
 | Jump Box | Gateway  | 10.1.0.9   | Linux            |
 | Web 1    |  VM      | 10.1.0.8   | Linux            |
 | Web 2    |  VM      | 10.1.0.9   | Linux            |
-| ELK      |  VM        10.0.0.4   | Linux            |
+| Elk      |  VM      | 10.0.0.4   | Linux            |
 
 ### Access Policies
 
